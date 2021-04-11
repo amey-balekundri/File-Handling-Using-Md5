@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="text">
+<h1>Cloud Based</h1> 
+<h1>Improved File Handling</h1> 
+<h1>and Duplication Removal Using MD5</h1>
+</div>
+
+
+    <style>
+        .imgbg{
+            /* background-image:url({{url_for('static', filename='bg.jpg')}}); */
+            background-image: url(/static/bg.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position:fixed;
+            top: 0;
+            left: 0; 
+            width: 100%;
+            height: 100%;
+            }
+        .navbar{
+            background-color: rgba(0,0,0,.2) !important;
+        }
+        .text{
+            margin-top: 15%;
+            color: white;
+        }
+        h1{
+            font-size: 60px;
+        }
+    </style>
+{% endblock content %}

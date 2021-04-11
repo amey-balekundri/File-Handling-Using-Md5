@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row mt-4 px-2">
+    {% for i in files: %}
+    <div class="col-sm-12 col-md-6 col-lg-3 p-3">
+    <div class="card text-center">
+        <h5 class="card-header">{{i.fileName}}</h5>
+        <div class="card-body">
+          <p class="card-text">Md5 - {{i.md5}}</p>
+          <a href="{{ url_for('dashboard.download', filename=i.fileName) }}" class="btn btn-outline-info">Download</a>
+          <a href="{{ url_for('dashboard.delete', filename=i.fileName) }}" class="btn btn-outline-danger">Delete</a>
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button" id="UploadButton" class="btn btn-dark m-3 p-3" data-toggle="modal" data-target="#exampleModal">
+  <i class="fas fa-file-upload fa-lg"></i> Upload Files
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Upload Files</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form method="POST" action="" enctype="multipart/form-data" id="upload">
+            <div class="modal-body">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {% if form.uploaded_file.errors %}
+                        {{ form.uploaded_file(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.uploaded_file.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.uploaded_file(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="modal-footer form-group">
+                    {{ form.upload(class="btn btn-primary") }}
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+{% endblock content %}
